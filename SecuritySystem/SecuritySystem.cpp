@@ -77,7 +77,7 @@ void ssDoorLockEventHandler (DoorLock::DoorLockEvent event, std::string pin_code
 				else
 				{
 					// access was NOT granted to this person
-					SecurityAlarm::triggerAlarm ("true");
+					SecurityAlarm::triggerAlarm (true);
 				}
 			}
 		} break;
