@@ -37,7 +37,7 @@ bool isPersonAllowed (std::string person)
 	{
 		if (person == ALLOW_ACCESS[x])
 		{
-			is_allowed = true;
+			is_allowed = true;  //syntax error
 			break;
 		}
 	}
@@ -77,7 +77,7 @@ void ssDoorLockEventHandler (DoorLock::DoorLockEvent event, std::string pin_code
 				else
 				{
 					// access was NOT granted to this person
-					SecurityAlarm::triggerAlarm (true);
+					SecurityAlarm::triggerAlarm (true);			//syntax error
 				}
 			}
 		} break;
@@ -90,7 +90,7 @@ void ssDoorLockEventHandler (DoorLock::DoorLockEvent event, std::string pin_code
 
 		case DoorLock::DoorLockEvent::PIN_CODE_ENTERED:
 		{
-			if (pin_code == SECURE_PIN_CODE)
+			if (std::stoi(pin_code) == std::stoi(SECURE_PIN_CODE))  //data type error
 			{
 				access_granted = true;
 				DoorLock::unlockDoor ();
@@ -115,7 +115,7 @@ void ssVideoDoorbellEventHandler (VideoDoorbell::VideoDoorbellEvent event, std::
 		{
 			MobileAppInterface::notifyFrontDoorActivity (true, person_at_door);
 
-			if (!isPersonAllowed (person_at_door))
+			if (isPersonAllowed (person_at_door))  //logical error
 			{
 				access_granted = true;
 				DoorLock::unlockDoor ();
